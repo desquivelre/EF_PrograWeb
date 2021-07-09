@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-GNJJMF8KL8"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GNJJMF8KL8');
+    </script>
+<meta charset="utf-8">
+<title>Register vehicle</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+	crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{/styleIndex.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+	
+	<input type="checkbox" id="check">
+
+		<!--header area start-->
+
+		<nav class="navbar navbar-expand-lg navbar-dark sticky-top"
+			style="background-color: #cc0000;" >
+			<div class="container-fluid d-flex align-items-center">
+
+				    <a
+					class="navbar-brand d-flex align-items-center"
+					style="margin-left: 20px;" href="#"> Progra Web </a>
+
+
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse d-flex align-items-center"
+					id="navbarNavDropdown">
+						
+														
+					</ul>
+					<label for="check" class="menuprincipal"> 
+								<i class="fas fa-user-circle fa-2x" id="sidebar_btn"></i>
+					</label>
+				</div>
+			</div>
+		</nav>
+	
+		<!--header area end-->
+		<!--sidebar start-->
+
+		<div class="sidebar">
+			<center>
+			
+				<h4><span sec:authentication="name" >Username</span></h4>
+				
+			</center>
+
+
+			<a th:href="@{/}" ><i class="fas fa-desktop"></i><span>Register vehicle</span></a>
+			
+			<a th:href="@{/list}"><i class="fas fa-sliders-h"></i><span>List vehicles</span></a>
+		</div>
+		
+
+		<div class="content">
+			
+			<div class="Marco">
+	
+				<form th:action="@{/new}" th:object="${newVehicle}", method="post">
+				<div class="Title">Create vehicle</div>
+					<div class="all-inputs">
+					
+						<div class="inputs">
+							<h5>License Plate Vehicle</h5>
+							<div class="input-derecha">
+							
+							<span th:unless="${#fields.hasErrors('*')}" class="alert-alert-danger" role="alert">
+								<span th:if="*{erLicensePlateVehicle}!=null">
+									<span th:if="*{ertareVehicle}!=null">
+										<span th:if="*{erWeightLoadVehicle}!=null" id="satisfactorio">
+											Se registro correctamente	
+										</span>
+									</span>
+								</span>
+							</span>
+							
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('erLicensePlateVehicle')}" th:errors= "*{erLicensePlateVehicle}"></small>
+								<input type="text" th:field="*{erLicensePlateVehicle}">
+							</div>
+						</div>
+						
+						<div class="inputs">
+							<h5>Tare Vehicle</h5>
+							<div class="input-derecha">
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('ertareVehicle')}" th:errors= "*{ertareVehicle}"></small>
+								<input type="text" th:field="*{ertareVehicle}" placeholder="0.00">
+							</div>
+								
+						</div>
+						
+						<div class="inputs">
+							<h5>Weight Load Vehicle</h5>
+								<div class="input-derecha">
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('erWeightLoadVehicle')}" th:errors= "*{erWeightLoadVehicle}"></small>
+								<input type="text" th:field="*{erWeightLoadVehicle}" placeholder="0.00">
+							</div>	
+						</div>
+										
+					</div>	
+					
+					<button type="submit" class="btn btn-primary">Register</button>
+					
+				</form>
+			</div>
+			
+		</div>
+	
+</body>
+
+</html>
